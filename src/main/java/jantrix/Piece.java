@@ -62,7 +62,9 @@ public class Piece {
         try {
             for(i=1; i<4; i++)
                 pos[i] = p + turnsMatrix[index + i - 1];
-        } catch(ArrayIndexOutOfBoundsException e) {}
+        } catch(ArrayIndexOutOfBoundsException e) {
+		//TODO Investigate empty block
+	}
         
         gameRef.setMatrix(pos[0], tipo+1);
         gameRef.setMatrix(pos[1], tipo+1);

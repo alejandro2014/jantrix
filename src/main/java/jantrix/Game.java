@@ -227,6 +227,7 @@ public class Game extends JFrame {
      * access the matrix properly
      */
     private void drawNextPiece(int kind) {
+	//TODO Use Points instead of coordinates
         int pos = kind*8;
         int x1 = nextPieceMatrix[pos], y1= nextPieceMatrix[pos+1];
         int x2 = nextPieceMatrix[pos+2], y2= nextPieceMatrix[pos+3];
@@ -294,6 +295,7 @@ public class Game extends JFrame {
      * @param source Source line
      * @param destination Destination line
      */
+//TODO Is it possible to replace this wit an built-int function?
     private void copyLine(int source, int destination) {
         int iniCellSource = source*12 + 1;
         int iniCellDestin = destination*12 + 1;
@@ -316,9 +318,7 @@ public class Game extends JFrame {
      * @return true if the game is over, false otherwise
      */
     public boolean checkGameOver() {
-        if((posIniPiece[piece.getKind()] == piece.getPos(0)) && iteration > 0)
-            return true;
-        else return false;
+        return ((posIniPiece[piece.getKind()] == piece.getPos(0)) && iteration > 0);
     }
     
     public int getTipoPiece() { return pieceKind; }
