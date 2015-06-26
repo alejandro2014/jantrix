@@ -10,4 +10,6 @@ This is my own own implementation of the tetris game. The project is to convert 
 
 * Fix the bugs in the game
 * Refactor the code to a more understandable format
+* Create the score table
+* Choose the level that the user wants to start from
 * Transform the java game into an android application
