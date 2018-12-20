@@ -77,23 +77,33 @@ public class Window extends JFrame {
     private void jantrixLoop() {
         while(jantrixState != EXIT) {
             switch(jantrixState) {
-                case MENU:
-                    game = null;
-                    currentBackg = menuBackg;
+                case MENU: setGameStatus(null, new Menu(keybl,this), menuBackg); break;
+                case GAME: setGameStatus(new Game(keybl,this), null, gameBackg); break;
 
-                    menu = new Menu(keybl,this);
-                    if(exitCode == OPT_NEWGAME) jantrixState = GAME;
-                    else if(exitCode == OPT_EXIT) jantrixState = EXIT;
-                    break;
-
-                case GAME:
-                    menu = null;
-                    currentBackg = gameBackg;
-                    jantrixState = MENU;
-                    game = new Game(keybl,this);
-                    break;
+                jantrixState = setJantrixState(jantrixState, exitCode);
             }
         }
+    }
+
+    private void setGameStatus(Game game, Menu menu, Image background) {
+        this.game = game;
+        this.menu = menu;
+        this.currentBackg = background;
+    }
+
+    private int setJantrixState() {
+        switch(jantrixState) {
+            case MENU:
+                if(exitCode == OPT_NEWGAME) jantrixState = GAME;
+                else if(exitCode == OPT_EXIT) jantrixState = EXIT;
+                break;
+
+            case GAME:
+                jantrixState = MENU;
+                break;
+        }
+
+        return jantrixState;
     }
 
     public BufferStrategy getBf() {return bf;}
